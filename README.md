@@ -12,3 +12,8 @@ opam switch create macros --repos default,macros=git+https://github.com/modular-
 
 [modular-macros]: https://www.cl.cam.ac.uk/~jdy22/projects/modular-macros/
 [opam]: https://opam.ocaml.org/
+
+### Current packages:
+
+* [staged-streams](https://github.com/modular-macros/staged-streams.ocaml-macros),
+  for stream computations with fusion

@@ -1,0 +1,25 @@
+opam-version: "2.0"
+synopsis: "The Strymonas staged streams library"
+name: "staged-streams"
+version: "dev"
+authors: [
+  "Oleg Kiselyov"
+  "Aggelos Biboudis"
+  "Nick Palladinos"
+  "Yannis Smaragdakis"
+]
+maintainer: "yallop@gmail.com"
+homepage: "https://github.com/modular-macros/staged-streams.ocaml-macros"
+dev-repo: "git+https://github.com/modular-macros/staged-streams.ocaml-macros.git"
+bug-reports: "https://github.com/modular-macros/staged-streams.ocaml-macros/issues"
+build: [make "all"]
+install:[make "install"]
+remove: ["ocamlfind" "remove" "staged-streams"]
+depends: [
+   "ocamlfind" {build}
+   "ocamlbuild" {build & = "0.9.1"}
+]
+url {
+  src: "https://github.com/modular-macros/staged-streams.ocaml-macros/archive/checkpoint-2022-10-14.tar.gz"
+  checksum: "md5=722838ceac0feeb9ae9b4bec5487d315"
+}
