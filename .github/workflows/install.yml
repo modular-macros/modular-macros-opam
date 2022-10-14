@@ -28,3 +28,4 @@ jobs:
       - name: Deps
         run: |
           opam install --yes ocamlfind
+          opam install --yes `ls packages | grep -v ocaml-variants`
