@@ -46,7 +46,7 @@ url {
   src: "https://github.com/modular-macros/ocaml-macros/archive/macros_old.tar.gz"
   checksum: "md5=705b66e78ba20c0e3dd9fe90ed6f3a4e"
 }
-patches: ["fix-gcc10.patch" "alt-signal-stack.patch"]
+patches: ["fix-gcc10.patch"]
 available: !(os = "macos" & arch = "arm64")
 license: "QPL-1.0 AND LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
 authors: [
@@ -57,7 +57,3 @@ authors: [
   "Didier Rémy"
   "Jérôme Vouillon"
 ]
-extra-source "alt-signal-stack.patch" {
-  src: "https://github.com/ocaml/ocaml/commit/6bcff7e6ce1a43e088469278eb3a9341e6a2ca5b.patch"
-  checksum: "sha256=81820e9caefabab28563730b992905a8afea74158d46b65ab1c355fe425642fa"
-}
