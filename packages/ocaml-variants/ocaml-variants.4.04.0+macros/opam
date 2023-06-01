@@ -44,7 +44,7 @@ build: [
 install: [make "install"]
 url {
   src: "https://github.com/modular-macros/ocaml-macros/archive/macros_old.tar.gz"
-  checksum: "md5=705b66e78ba20c0e3dd9fe90ed6f3a4e"
+  checksum: "md5=156e085bbb7593dbbbd2f567e4204598"
 }
 patches: ["fix-gcc10.patch"]
 available: !(os = "macos" & arch = "arm64")
