@@ -57,3 +57,11 @@ authors: [
   "Didier Rémy"
   "Jérôme Vouillon"
 ]
+extra-source "fix-gcc10.patch" {
+  src:
+    "https://raw.githubusercontent.com/ocaml/opam-source-archives/main/patches/ocaml-base-compiler/fix-gcc10.patch.4.04.1"
+  checksum: [
+    "sha256=ca5ea3fb78daac1c3899abfddb7bda4680255e6364e53e63d651392e669ab73a"
+    "md5=c59d1ac3de4c892f4aa74d8d1112de00"
+  ]
+}
