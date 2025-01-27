@@ -6,8 +6,14 @@ A repository of [OPAM][opam] packages for [Modular Macros][modular-macros].
 
 ### Setting up
 
+Installing the 4.04.0 variant:
 ```
 opam switch create macros --repos default,macros=git+https://github.com/modular-macros/modular-macros-opam.git ocaml-variants.4.04.0+macros
+```
+
+Installing the 5.3.0 variant:
+```
+opam switch create macocaml --packages=ocaml-variants.5.3.0+macocaml-branch --repos=default,macocaml=git+https://github.com/modular-macros/modular-macros-opam.git
 ```
 
 [modular-macros]: https://www.cl.cam.ac.uk/~jdy22/projects/modular-macros/
