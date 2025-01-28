@@ -87,7 +87,7 @@ build: [
     "--with-winpthreads-msvc=%{winpthreads:share}%" {system-msvc:installed}
     "-C"
     "--with-afl" {ocaml-option-afl:installed}
-    "--disable-native-compiler" {ocaml-option-bytecode-only:installed}
+    "--disable-native-compiler"
     "--disable-flat-float-array" {ocaml-option-no-flat-float-array:installed}
     "--enable-flambda" {ocaml-option-flambda:installed}
     "--enable-frame-pointers" {ocaml-option-fp:installed}
@@ -109,7 +109,7 @@ build: [
     "LIBS=-static" {ocaml-option-static:installed}
     "--disable-warn-error"
   ]
-  [make]
+  [make "-j%{jobs}%" "world"]
 ]
 install: [make "install"]
 url {
