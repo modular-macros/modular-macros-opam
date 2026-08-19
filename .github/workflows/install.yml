@@ -1,31 +1,82 @@
-name: Macros
+# Following ocaml/opam-repository convention: each push/PR builds the
+# packages it adds or changes (and, through opam, their dependencies).
+# Everything runs on GitHub Actions runners.
+name: Build
 on: [push, pull_request, workflow_dispatch]
 jobs:
-  install:
-    name: Install
+  changed:
+    name: Detect changed packages
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.detect.outputs.packages }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect packages changed since the base
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="origin/${{ github.base_ref }}"
+          elif git rev-parse -q --verify origin/master >/dev/null \
+               && [ "${{ github.ref_name }}" != "master" ]; then
+            base="origin/master"
+          else
+            base="HEAD~1"
+          fi
+          base=$(git merge-base "$base" HEAD || echo "$base")
+          pkgs=$(git diff --name-only "$base" HEAD -- packages/ \
+                 | cut -d/ -f3 | sort -u \
+                 | while read -r p; do
+                     [ -n "$p" ] && [ -d "packages/${p%%.*}/$p" ] && echo "$p"
+                   done | jq -R . | jq -cs .)
+          echo "changed packages: $pkgs"
+          echo "packages=$pkgs" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build ${{ matrix.package }}
+    needs: changed
+    if: needs.changed.outputs.packages != '[]'
     runs-on: ${{ matrix.os }}
-    env:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     strategy:
       fail-fast: false
       matrix:
-        ocaml-compiler: [ 'ocaml-variants.4.04.0+macros' ]
+        package: ${{ fromJSON(needs.changed.outputs.packages) }}
         os: [ubuntu-latest]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use OCaml ${{ matrix.ocaml-compiler }}
+      - name: Select compiler for this package
+        id: compiler
+        run: |
+          case "${{ matrix.package }}" in
+            ocaml-variants.*|ocaml-base-compiler.*)
+              echo "compiler=${{ matrix.package }}" >> "$GITHUB_OUTPUT" ;;
+            *)
+              # non-compiler packages build on the current prototype
+              echo "compiler=ocaml-variants.5.5.0+macocaml-prototype-2026-08-06" \
+                >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - name: Build compiler switch (${{ steps.compiler.outputs.compiler }})
         uses: ocaml/setup-ocaml@v3
         with:
-          ocaml-compiler: ${{ matrix.ocaml-compiler }}
+          ocaml-compiler: ${{ steps.compiler.outputs.compiler }}
           opam-repositories: |
+            macocaml: file://${{ github.workspace }}
             default: https://github.com/ocaml/opam-repository.git
-            macros: file:///home/runner/work/modular-macros-opam/modular-macros-opam
           dune-cache: false
-          opam-depext: false
 
-      - name: Deps
+      - name: Install the package and its dependencies
+        if: ${{ !startsWith(matrix.package, 'ocaml-variants.') }}
+        run: opam install --yes '${{ matrix.package }}'
+
+      - name: Smoke-test the compiler
+        if: ${{ startsWith(matrix.package, 'ocaml-variants.') }}
         run: |
-          opam install --yes ocamlfind
-          opam install --yes `ls packages | grep -v ocaml-variants`
+          opam exec -- ocaml -version
+          echo 'print_endline "hello from macocaml"' > /tmp/t.ml
+          opam exec -- ocaml /tmp/t.ml
