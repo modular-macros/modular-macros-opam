@@ -19,6 +19,9 @@ depends: [
   # This is OCaml 5.5.0
   "ocaml" {= "5.5.0" & post}
 
+  # Keep MacoCaml switches on the macocaml builds of overridden packages
+  "macocaml-overrides" {post}
+
   # General base- packages
   "base-unix" {post}
   "base-bigarray" {post}

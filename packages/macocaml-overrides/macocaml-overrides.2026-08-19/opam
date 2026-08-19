@@ -1,0 +1,33 @@
+opam-version: "2.0"
+synopsis: "Pins MacoCaml switches to the macocaml builds of overridden packages"
+description: """
+A marker package installed with the MacoCaml prototype compiler.  It
+carries no code: its conflicts prevent the opam solver from ever
+selecting a stock build of a package that this repository overrides
+with a macocaml port, so `opam install dune` (or any dependency on an
+overridden package) resolves to the +macocaml build on MacoCaml
+switches, and `opam upgrade` cannot drift onto stock versions.
+
+Update the conflicts list whenever a new overridden package lands in
+this repository.
+"""
+maintainer: [
+  "Jeremy Yallop <yallop@gmail.com>"
+]
+homepage: "https://github.com/modular-macros/modular-macros-opam"
+bug-reports: "https://github.com/modular-macros/modular-macros-opam/issues"
+authors: [
+  "Jeremy Yallop <yallop@gmail.com>"
+]
+license: "MIT"
+depends: [
+  "ocaml-variants" {= "5.5.0+macocaml-prototype-2026-08-06" & post}
+]
+conflicts: [
+  "dune" {!= "3.24.1+macocaml"}
+  "cmdliner" {!= "2.1.1+macocaml"}
+  "cppo" {!= "1.8.0+macocaml"}
+  "ppxlib" {!= "0.38.0+macocaml"}
+  "letrec" {!= "0.3.1+macocaml"}
+]
+flags: avoid-version
