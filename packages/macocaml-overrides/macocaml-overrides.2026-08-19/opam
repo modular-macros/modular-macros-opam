@@ -44,5 +44,6 @@ conflicts: [
   "fast_gen" {!= "0.1.0+macocaml"}
   "reex" {!= "0.2.1+macocaml"}
   "reex_match" {!= "0.2.1+macocaml"}
+  "flap" {!= "0.1.0+macocaml"}
 ]
 flags: avoid-version
