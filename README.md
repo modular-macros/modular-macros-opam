@@ -11,7 +11,7 @@ Installing the MacoCaml prototype compiler:
 ```
 opam switch create macocaml \
   --packages=ocaml-variants.5.5.0+macocaml-prototype-2026-08-06 \
-  --repos=default,macocaml=git+https://github.com/modular-macros/modular-macros-opam.git#macocaml-prototype-2026-08-06
+  --repos=default,macocaml=git+https://github.com/modular-macros/modular-macros-opam.git
 ```
 
 The compiler is built from the
