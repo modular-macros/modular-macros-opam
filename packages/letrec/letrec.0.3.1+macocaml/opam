@@ -1,0 +1,22 @@
+opam-version: "2.0"
+synopsis: "Flexible 'let rec' generation for MacoCaml"
+maintainer: "Jeremy Yallop <yallop@gmail.com>"
+authors: "Jeremy Yallop <yallop@gmail.com>"
+homepage: "https://github.com/yallop/metaocaml-letrec"
+dev-repo: "git+https://github.com/yallop/metaocaml-letrec.git"
+bug-reports: "https://github.com/yallop/metaocaml-letrec/issues"
+license: "MIT"
+build: [
+  [make]
+  [make "all" "test"] {with-test}
+]
+install: [make "install"]
+remove: ["ocamlfind" "remove" "letrec"]
+depends: [
+  "ocamlfind" {build}
+  "ocaml-variants"
+    {= "5.5.0+macocaml-prototype-2026-08-06" }
+]
+url {
+  src: "git+https://github.com/modular-macros-packages/metaocaml-letrec.git#macocaml-port-2026-08-19"
+}
