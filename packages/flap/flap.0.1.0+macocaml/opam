@@ -1,0 +1,23 @@
+opam-version: "2.0"
+synopsis: "A deterministic parser with fused lexing"
+maintainer: "yallop@gmail.com"
+authors: ["Jeremy Yallop <yallop@gmail.com>"]
+homepage: "https://github.com/yallop/ocaml-flap"
+dev-repo: "git+http://github.com/yallop/ocaml-flap.git"
+bug-reports: "http://github.com/yallop/ocaml-flap/issues"
+license: "MIT"
+build: [[make]
+        [make "test" "bench"]  {with-test} ]
+depends: [
+   "dune" {>= "3.24"}
+   "ocaml-variants" {= "5.5.0+macocaml-prototype-2026-08-06"}
+   "letrec"
+   "reex"
+   "reex_match"
+   "charmatch"
+   "ppx_deriving"
+   "ounit2" {with-test}
+]
+url {
+  src: "git+https://github.com/modular-macros-packages/ocaml-flap.git#macocaml-port-2026-08-19"
+}
