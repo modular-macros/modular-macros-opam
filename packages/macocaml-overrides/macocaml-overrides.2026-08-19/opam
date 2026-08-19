@@ -38,5 +38,11 @@ conflicts: [
   "syb" {!= "dev+macocaml"}
   "frex" {!= "0.2.0+macocaml"}
   "core_kernel" {!= "v0.17.0+macocaml"}
+  "core_unix" {!= "v0.17.1+macocaml"}
+  "bitstring" {!= "5.0.2+macocaml"}
+  "ppx_bitstring" {!= "5.0.2+macocaml"}
+  "fast_gen" {!= "0.1.0+macocaml"}
+  "reex" {!= "0.2.1+macocaml"}
+  "reex_match" {!= "0.2.1+macocaml"}
 ]
 flags: avoid-version
