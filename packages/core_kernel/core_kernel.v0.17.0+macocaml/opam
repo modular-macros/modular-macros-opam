@@ -1,0 +1,37 @@
+opam-version: "2.0"
+maintainer: "Jane Street developers"
+authors: ["Jane Street Group, LLC"]
+homepage: "https://github.com/janestreet/core_kernel"
+bug-reports: "https://github.com/janestreet/core_kernel/issues"
+dev-repo: "git+https://github.com/janestreet/core_kernel.git"
+doc: "https://ocaml.janestreet.com/ocaml-core/latest/doc/core_kernel/index.html"
+license: "MIT"
+build: [
+  ["dune" "build" "-p" name "-j" jobs]
+]
+depends: [
+  # MacoCaml only: this build requires the macocaml prototype compiler
+  "ocaml-variants" {= "5.5.0+macocaml-prototype-2026-08-06"}
+  "ocaml"        {>= "5.1.0"}
+  "base"         {>= "v0.17" & < "v0.18~"}
+  "core"         {>= "v0.17" & < "v0.18~"}
+  "int_repr"     {>= "v0.17" & < "v0.18~"}
+  "ppx_jane"     {>= "v0.17" & < "v0.18~"}
+  "ppx_optcomp"  {>= "v0.17" & < "v0.18~"}
+  "uopt"         {>= "v0.17" & < "v0.18~"}
+  "base-threads"
+  "dune"         {>= "3.11.0"}
+]
+available: arch != "arm32" & arch != "x86_32"
+synopsis: "Industrial strength alternative to OCaml's standard library"
+description: "
+The Core suite of libraries is an industrial strength alternative to
+OCaml's standard library that was developed by Jane Street, the
+largest industrial user of OCaml.
+
+Core_kernel is the system-independent part of Core.
+"
+x-maintenance-intent: ["(latest)"]
+url {
+  src: "git+https://github.com/modular-macros-packages/core_kernel.git#macocaml-port-2026-08-19"
+}
