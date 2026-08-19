@@ -29,5 +29,14 @@ conflicts: [
   "cppo" {!= "1.8.0+macocaml"}
   "ppxlib" {!= "0.38.0+macocaml"}
   "letrec" {!= "0.3.1+macocaml"}
+  "charmatch" {!= "0.3.0+macocaml"}
+  "uutf" {!= "1.0.4+macocaml"}
+  "logs" {!= "0.10.0+macocaml"}
+  "re" {!= "1.14.0+macocaml"}
+  "ctypes" {!= "0.24.0+macocaml"}
+  "ctypes-foreign" {!= "0.24.0+macocaml"}
+  "syb" {!= "dev+macocaml"}
+  "frex" {!= "0.2.0+macocaml"}
+  "core_kernel" {!= "v0.17.0+macocaml"}
 ]
 flags: avoid-version
