@@ -45,5 +45,6 @@ conflicts: [
   "reex" {!= "0.2.1+macocaml"}
   "reex_match" {!= "0.2.1+macocaml"}
   "flap" {!= "0.1.0+macocaml"}
+  "ppx_sexp_conv" {!= "v0.17.1+macocaml"}
 ]
 flags: avoid-version
