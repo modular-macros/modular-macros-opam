@@ -61,12 +61,21 @@ jobs:
                 >> "$GITHUB_OUTPUT" ;;
           esac
 
+      # opam >= 2.5 refuses local repositories whose tree contains a
+      # symlink, and the runner workspace accumulates non-tracked files
+      # around the checkout; serve opam a clean export of the tracked
+      # tree instead of the workspace itself.
+      - name: Export the repository for opam
+        run: |
+          mkdir -p "$RUNNER_TEMP/opam-repo"
+          git archive HEAD | tar -x -C "$RUNNER_TEMP/opam-repo"
+
       - name: Build compiler switch (${{ steps.compiler.outputs.compiler }})
         uses: ocaml/setup-ocaml@v3
         with:
           ocaml-compiler: ${{ steps.compiler.outputs.compiler }}
           opam-repositories: |
-            macocaml: file://${{ github.workspace }}
+            macocaml: file://${{ runner.temp }}/opam-repo
             default: https://github.com/ocaml/opam-repository.git
           dune-cache: false
 
