@@ -1,0 +1,24 @@
+opam-version: "2.0"
+synopsis: "Regular expression matching for MacoCaml"
+maintainer: "yallop@gmail.com"
+authors: ["Jeremy Yallop <yallop@gmail.com>"]
+homepage: "https://github.com/yallop/ocaml-reex"
+dev-repo: "git+https://github.com/yallop/ocaml-reex.git"
+bug-reports: "https://github.com/yallop/ocaml-reex/issues"
+license: "MIT"
+build: [
+  ["dune" "subst"] {dev}
+  ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
+]
+depends: [
+   "ocaml-variants" {= "5.5.0+macocaml-prototype-2026-08-06"}
+   "dune" {>= "3.24"}
+   "reex"
+   "letrec"
+   "charmatch"
+   "ounit2" {with-test}
+]
+url {
+  src: "git+https://github.com/modular-macros-packages/ocaml-reex.git#macocaml-port-2026-08-19"
+}
