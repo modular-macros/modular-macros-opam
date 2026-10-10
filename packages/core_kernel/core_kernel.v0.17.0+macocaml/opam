@@ -11,7 +11,7 @@ build: [
 ]
 depends: [
   # MacoCaml only: this build requires the macocaml prototype compiler
-  "ocaml-variants" {= "5.5.0+macocaml-prototype-2026-08-06"}
+  "ocaml-variants" {= "5.5.0+macocaml-prototype-2026-08-06" | = "5.5.0+macocaml-prototype-2026-10-08"}
   "ocaml"        {>= "5.1.0"}
   "base"         {>= "v0.17" & < "v0.18~"}
   "core"         {>= "v0.17" & < "v0.18~"}
