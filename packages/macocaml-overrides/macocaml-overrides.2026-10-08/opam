@@ -1,0 +1,46 @@
+opam-version: "2.0"
+synopsis: "Pins MacoCaml switches to the macocaml builds of overridden packages"
+description: """
+A marker package installed with the MacoCaml prototype compiler.  It
+carries no code: its conflicts prevent the opam solver from ever
+selecting a stock build of a package that this repository overrides
+with a macocaml port, so `opam install dune` (or any dependency on an
+overridden package) resolves to the +macocaml build on MacoCaml
+switches, and `opam upgrade` cannot drift onto stock versions.
+
+Update the conflicts list whenever a new overridden package lands in
+this repository.
+"""
+maintainer: [
+  "Jeremy Yallop <yallop@gmail.com>"
+]
+homepage: "https://github.com/modular-macros/modular-macros-opam"
+bug-reports: "https://github.com/modular-macros/modular-macros-opam/issues"
+authors: [
+  "Jeremy Yallop <yallop@gmail.com>"
+]
+license: "MIT"
+depends: [
+  "ocaml-variants" {= "5.5.0+macocaml-prototype-2026-10-08" & post}
+]
+conflicts: [
+  "dune" {!= "3.24.1+macocaml-2026-10-08"}
+  "ppxlib" {!= "0.38.0+macocaml-2026-10-08"}
+  "letrec" {!= "0.3.1+macocaml-2026-10-08"}
+  "charmatch" {!= "0.3.0+macocaml-2026-10-08"}
+  "re" {!= "1.14.0+macocaml-2026-10-08"}
+  "ctypes" {!= "0.24.0+macocaml-2026-10-08"}
+  "ctypes-foreign" {!= "0.24.0+macocaml-2026-10-08"}
+  "syb" {!= "dev+macocaml-2026-10-08"}
+  "frex" {!= "0.2.0+macocaml-2026-10-08"}
+  "core_kernel" {!= "v0.17.0+macocaml"}
+  "core_unix" {!= "v0.17.1+macocaml"}
+  "bitstring" {!= "5.0.2+macocaml-2026-10-08"}
+  "ppx_bitstring" {!= "5.0.2+macocaml-2026-10-08"}
+  "fast_gen" {!= "0.1.0+macocaml-2026-10-08"}
+  "reex" {!= "0.2.1+macocaml-2026-10-08"}
+  "reex_match" {!= "0.2.1+macocaml-2026-10-08"}
+  "flap" {!= "0.1.0+macocaml-2026-10-08"}
+  "ppx_sexp_conv" {!= "v0.17.1+macocaml-2026-10-08"}
+]
+flags: avoid-version
