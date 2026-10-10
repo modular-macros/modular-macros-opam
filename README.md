@@ -10,12 +10,12 @@ A repository of [OPAM][opam] packages for [Modular Macros][modular-macros]
 Installing the MacoCaml prototype compiler:
 ```
 opam switch create macocaml \
-  --packages=ocaml-variants.5.5.0+macocaml-prototype-2026-08-06 \
+  --packages=ocaml-variants.5.5.0+macocaml-prototype-2026-10-08 \
   --repos=default,macocaml=git+https://github.com/modular-macros/modular-macros-opam.git
 ```
 
 The compiler is built from the
-[macocaml-prototype-2026-08-06](https://github.com/modular-macros/ocaml-macros/tree/macocaml-prototype-2026-08-06)
+[macocaml-prototype-2026-10-08](https://github.com/modular-macros/ocaml-macros/tree/macocaml-prototype-2026-10-08)
 branch of the
 [modular-macros/ocaml-macros](https://github.com/modular-macros/ocaml-macros)
 repository.
